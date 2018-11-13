@@ -1,13 +1,18 @@
-import { Button } from 'antd'
 import * as React from 'react';
-import './App.css';
+import { Provider } from 'react-redux'
+import './index.less'
+
+import store from './store'
+
 
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <Button type="primary">hello world</Button>
-      </div>
+      <Provider store={store}>
+        <div className="test">
+          testtest
+        </div>
+      </Provider>
     );
   }
 }
