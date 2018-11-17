@@ -1,7 +1,7 @@
 import  { TEST_DISPATCH } from '../actions/types'
 const initialState = {
   isAuthenticated: false,
-  user: {}
+  user: 1
 }
 
 export default function (state = initialState, action: any) {
