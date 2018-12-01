@@ -1,13 +1,19 @@
-import Login from '../pages/Login'
+import Login from "../pages/login/index";
+import Index from "../pages/index/index"
+
 const routeConfig = [
   {
-    path: '/',
+    path: "/",
     component: Login
   },
   {
-    path: '/login',
+    path: "/login",
     component: Login
+  },
+  {
+    path: "/index",
+    component: Index
   }
-]
+];
 
-export default routeConfig
+export default routeConfig;

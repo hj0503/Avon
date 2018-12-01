@@ -16,14 +16,15 @@ module.exports = function override(config, env) {
       before: [ tsImportPluginFactory({
         libraryDirectory: 'es',
         libraryName: 'antd',
-        style: true,
+        style: 'css'
       }) ]
     })
   };
 
-  config = rewireLess.withLoaderOptions({
-      modifyVars: { "@primary-color": "#1DA57A" },
-  })(config, env)
+  // config = rewireLess.withLoaderOptions({
+  //     // modifyVars: { "@primary-color": "#1DA57A" },
+  //     javascriptEnabled: true
+  // })(config, env)
 
   return config;
 }
