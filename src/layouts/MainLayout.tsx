@@ -39,9 +39,28 @@ export default class MainLayout extends PureComponent {
                     </span>
                   }
                 >
-                  {menu.subMenu.map(sub => (
-                    <Menu.Item key={sub.key}>{sub.label}</Menu.Item>
-                  ))}
+                  {menu.subMenu.map(sub =>
+                    sub.subMenu ? (
+                      <SubMenu
+                        key={sub.key}
+                        title={
+                          <span>
+                            <Icon type={sub.icon} />
+                            <span>{sub.label}</span>
+                          </span>
+                        }
+                      >
+                        {sub.subMenu.map(sub => (
+                          <Menu.Item key={sub.key}>
+                            <Icon type={sub.icon} />
+                            <span>{sub.label}</span>
+                          </Menu.Item>
+                        ))}
+                      </SubMenu>
+                    ) : (
+                      <Menu.Item key={sub.key}>{sub.label}</Menu.Item>
+                    )
+                  )}
                 </SubMenu>
               ) : (
                 <Menu.Item key={menu.key}>

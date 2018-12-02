@@ -22,7 +22,19 @@ export const MENU_LIST = [
       {
         icon: "upload",
         label: "test3",
-        key: "menu_6"
+        key: "menu_6",
+        subMenu: [
+          {
+            icon: "upload",
+            label: "test5",
+            key: "menu_8"
+          },
+          {
+            icon: "user",
+            label: "test6",
+            key: "menu_9"
+          }
+        ]
       },
       {
         icon: "user",
