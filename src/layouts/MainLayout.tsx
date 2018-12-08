@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { Layout, Menu, Icon } from "antd";
+import { Link } from 'react-router-dom'
 import "./index.less";
 
 import { MENU_LIST } from "../data/menu";
@@ -52,20 +53,29 @@ export default class MainLayout extends PureComponent {
                       >
                         {sub.subMenu.map(sub => (
                           <Menu.Item key={sub.key}>
-                            <Icon type={sub.icon} />
-                            <span>{sub.label}</span>
+                            <Link to={ menu.path }>
+                              <Icon type={sub.icon} />
+                              <span>{sub.label}</span>
+                            </Link>
                           </Menu.Item>
                         ))}
                       </SubMenu>
                     ) : (
-                      <Menu.Item key={sub.key}>{sub.label}</Menu.Item>
+                      <Menu.Item key={sub.key}>
+                        <Link to={ menu.path }>
+                          <Icon type={sub.icon} />
+                          <span>{sub.label}</span>
+                        </Link>
+                      </Menu.Item>
                     )
                   )}
                 </SubMenu>
               ) : (
                 <Menu.Item key={menu.key}>
-                  <Icon type={menu.icon} />
-                  <span>{menu.label}</span>
+                  <Link to={ menu.path }>
+                    <Icon type={menu.icon} />
+                    <span>{menu.label}</span>
+                  </Link>
                 </Menu.Item>
               )
             )}
@@ -87,7 +97,7 @@ export default class MainLayout extends PureComponent {
               minHeight: 280
             }}
           >
-            Content
+            { this.props.children }
           </Content>
         </Layout>
       </Layout>
