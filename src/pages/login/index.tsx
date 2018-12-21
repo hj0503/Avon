@@ -12,7 +12,6 @@ class Index extends PureComponent<IndexProps> {
     loginLoading: false
   }
   onLogin = () => {
-    console.log('ttttttttttt')
     this.setState({ loginLoading: true })
     testFetch()
     setTimeout(() => this.props.history.push('/index'), 2000)
