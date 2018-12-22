@@ -2,6 +2,7 @@
   "name": "avon",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://holer65193.wdom.net",
   "dependencies": {
     "@types/react-redux": "^6.0.9",
     "@types/react-router-dom": "^4.3.1",

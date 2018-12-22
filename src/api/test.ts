@@ -1,17 +1,22 @@
 import { postByJson } from '../utils/request'
 
-const ROOT = '/.../...';   //本页面通用
+const ROOT = '/authentication';   //本页面通用
 
-function api(name: string) {
+function _api(name: string) {
   return ROOT + '/' + name
 }
 
-async function _post<T>(name, param = null) {
-  return await postByJson<T>(api, param)
+async function _post<T>(name, param: any = null) {
+  return await postByJson<T>(_api(name), param)
 }
 
 export async function testFetch() {
-  return await postByJson('/taopiaopiao/dianying', null)
+  const resp = await _post<any>('from', {
+    username: 'yangzihao',
+    password: 123
+  })
+  const { body: { data } } = resp
+  return data
 }
 
 export async function example(params) {

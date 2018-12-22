@@ -52,6 +52,8 @@ export default async function request<T>(url, options?): Promise<RequestResponse
     throw e;
   }
 
+  console.log('rrrrrr', response)
+
   throwIfBadStatus(response);
 
   const body: ApiResponse<T> = await response;
@@ -78,16 +80,16 @@ export async function post<T>(url, options?) {
   return await request<T>(url, options);
 }
 
-export async function postByJson<T>(url, body, options?) {
+export async function postByJson<T>(url, params, options?) {
   if (!options) {
     options = {};
   }
-  if (!options.body && body) {
+  if (!options.params && params) {
     if (!options.headers) {
       options.headers = {};
     }
     options.headers[ 'Content-Type' ] = 'application/json; charset=utf-8';
-    options.body = JSON.stringify(body, clearNull);
+    options.data = JSON.stringify(params, clearNull);
   }
   return await post<T>(url, options);
 }
