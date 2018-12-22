@@ -28,6 +28,7 @@
     "@types/react-dom": "^16.0.9",
     "axios": "^0.18.0",
     "babel-plugin-import": "^1.11.0",
+    "bizcharts": "^3.4.1",
     "css-loader": "^1.0.1",
     "less-loader": "^4.1.0",
     "lodash": "^4.17.11",
