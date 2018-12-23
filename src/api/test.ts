@@ -1,4 +1,5 @@
 import { postByJson } from '../utils/request'
+import md5 from 'js-md5'
 
 const ROOT = '/authentication';   //本页面通用
 
@@ -13,7 +14,7 @@ async function _post<T>(name, param: any = null) {
 export async function testFetch() {
   const resp = await _post<any>('from', {
     username: 'yangzihao',
-    password: 123
+    password: md5('123')
   })
   const { body: { data } } = resp
   return data

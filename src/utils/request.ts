@@ -52,8 +52,6 @@ export default async function request<T>(url, options?): Promise<RequestResponse
     throw e;
   }
 
-  console.log('rrrrrr', response)
-
   throwIfBadStatus(response);
 
   const body: ApiResponse<T> = await response;
