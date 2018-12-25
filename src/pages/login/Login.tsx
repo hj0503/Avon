@@ -1,30 +1,30 @@
 import React, { PureComponent } from "react";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
-import './index.less'
+import "./index.less";
 
 const FormItem = Form.Item;
 
 interface LoginProps {
-  loginLoading: boolean,
-  onLogin: (username: string, password: string) => void,
-  onLogout: () => void
+  loginLoading: boolean;
+  onLogin: (username: string, password: string) => void;
+  onLogout: () => void;
 }
 
 export default class Login extends PureComponent<LoginProps> {
   readonly state = {
     username: "yangzihao",
     password: "123"
-  }
+  };
 
-  onChange = (event) => {
-    const e = event.target
+  onChange = event => {
+    const e = event.target;
     this.setState({
       [e.name]: e.value
-    })
-  }
+    });
+  };
   render() {
-    const { onLogin, loginLoading, onLogout } = this.props
-    const { username, password } = this.state
+    const { onLogin, loginLoading, onLogout } = this.props;
+    const { username, password } = this.state;
     return (
       <Form className="login-form">
         <FormItem>
@@ -33,7 +33,7 @@ export default class Login extends PureComponent<LoginProps> {
             name="username"
             value={username}
             type="test"
-            onChange={ this.onChange }
+            onChange={this.onChange}
             placeholder="Username"
           />
         </FormItem>
@@ -43,21 +43,21 @@ export default class Login extends PureComponent<LoginProps> {
             name="password"
             value={password}
             type="password"
-            onChange={ this.onChange }
+            onChange={this.onChange}
             placeholder="Password"
           />
         </FormItem>
         <FormItem>
           <Checkbox>Remember me</Checkbox>
-          <a className="login-form-forgot" onClick={ () => onLogout() }>
+          <a className="login-form-forgot" onClick={() => onLogout()}>
             Forgot password
           </a>
           <Button
             type="primary"
             htmlType="submit"
             className="login-form-button"
-            loading={ loginLoading }
-            onClick={ () => onLogin(username, password) }
+            loading={loginLoading}
+            onClick={() => onLogin(username, password)}
           >
             Log in
           </Button>

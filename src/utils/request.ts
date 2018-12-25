@@ -99,5 +99,6 @@ export interface RequestResponse<T> {
 export interface ApiResponse<T> {
   code?: string,
   message?: string,
+  succeed?: boolean,
   data: T
 }

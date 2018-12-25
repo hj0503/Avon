@@ -6,4 +6,6 @@ Avon
   react-redux
   typescript
   less
-
+  lodash
+  axios
+  bizcharts
