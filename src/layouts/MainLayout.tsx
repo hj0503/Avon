@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
-import { Layout, Menu, Icon } from "antd";
-import { Link } from 'react-router-dom'
+import { Layout, Menu, Icon, Row, Col } from "antd";
+import { Link } from "react-router-dom";
+import ToolBar from "../components/ToolBar";
 import "./index.less";
 
 import { MENU_LIST } from "../data/menu";
@@ -53,7 +54,7 @@ export default class MainLayout extends PureComponent {
                       >
                         {sub.subMenu.map(sub => (
                           <Menu.Item key={sub.key}>
-                            <Link to={ menu.path }>
+                            <Link to={menu.path}>
                               <Icon type={sub.icon} />
                               <span>{sub.label}</span>
                             </Link>
@@ -62,7 +63,7 @@ export default class MainLayout extends PureComponent {
                       </SubMenu>
                     ) : (
                       <Menu.Item key={sub.key}>
-                        <Link to={ menu.path }>
+                        <Link to={menu.path}>
                           <Icon type={sub.icon} />
                           <span>{sub.label}</span>
                         </Link>
@@ -72,7 +73,7 @@ export default class MainLayout extends PureComponent {
                 </SubMenu>
               ) : (
                 <Menu.Item key={menu.key}>
-                  <Link to={ menu.path }>
+                  <Link to={menu.path}>
                     <Icon type={menu.icon} />
                     <span>{menu.label}</span>
                   </Link>
@@ -82,12 +83,19 @@ export default class MainLayout extends PureComponent {
           </Menu>
         </Sider>
         <Layout>
-          <Header style={{ background: "#fff", padding: 0 }}>
-            <Icon
-              className="trigger"
-              type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
-              onClick={this.toggle}
-            />
+          <Header style={{ background: "#fff", padding: "0 24px 0 0" }}>
+            <Row>
+              <Col span={12}>
+                <Icon
+                  className="trigger"
+                  type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
+                  onClick={this.toggle}
+                />
+              </Col>
+              <Col span={12}>
+                <ToolBar />
+              </Col>
+            </Row>
           </Header>
           <Content
             style={{
@@ -97,7 +105,7 @@ export default class MainLayout extends PureComponent {
               minHeight: 280
             }}
           >
-            { this.props.children }
+            {this.props.children}
           </Content>
         </Layout>
       </Layout>
