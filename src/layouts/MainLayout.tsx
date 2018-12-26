@@ -1,102 +1,27 @@
 import React, { PureComponent } from "react";
-import { Layout, Menu, Icon, Row, Col } from "antd";
-import { Link } from "react-router-dom";
-import ToolBar from "../components/ToolBar";
+import { Layout } from "antd";
 import "./index.less";
 
-import { MENU_LIST } from "../data/menu";
+const { Content } = Layout;
 
-const { Header, Sider, Content } = Layout;
-const SubMenu = Menu.SubMenu;
+import HeaderLayout from './HeaderLayout';
+import SiderLayout from './SiderLayout';
 
 export default class MainLayout extends PureComponent {
-  state = {
+  readonly state = {
     collapsed: false
-  };
-
+  }
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed
     });
   };
-
   render() {
     return (
       <Layout className="mainLayout">
-        <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-          <div className="logo" />
-          <Menu
-            theme="dark"
-            mode="inline"
-            defaultSelectedKeys={[MENU_LIST[0].key]}
-          >
-            {MENU_LIST.map(menu =>
-              menu.subMenu ? (
-                <SubMenu
-                  key={menu.key}
-                  title={
-                    <span>
-                      <Icon type={menu.icon} />
-                      <span>{menu.label}</span>
-                    </span>
-                  }
-                >
-                  {menu.subMenu.map(sub =>
-                    sub.subMenu ? (
-                      <SubMenu
-                        key={sub.key}
-                        title={
-                          <span>
-                            <Icon type={sub.icon} />
-                            <span>{sub.label}</span>
-                          </span>
-                        }
-                      >
-                        {sub.subMenu.map(sub => (
-                          <Menu.Item key={sub.key}>
-                            <Link to={menu.path}>
-                              <Icon type={sub.icon} />
-                              <span>{sub.label}</span>
-                            </Link>
-                          </Menu.Item>
-                        ))}
-                      </SubMenu>
-                    ) : (
-                      <Menu.Item key={sub.key}>
-                        <Link to={menu.path}>
-                          <Icon type={sub.icon} />
-                          <span>{sub.label}</span>
-                        </Link>
-                      </Menu.Item>
-                    )
-                  )}
-                </SubMenu>
-              ) : (
-                <Menu.Item key={menu.key}>
-                  <Link to={menu.path}>
-                    <Icon type={menu.icon} />
-                    <span>{menu.label}</span>
-                  </Link>
-                </Menu.Item>
-              )
-            )}
-          </Menu>
-        </Sider>
+        <SiderLayout collapsed={ this.state.collapsed }/>
         <Layout>
-          <Header style={{ background: "#fff", padding: "0 24px 0 0" }}>
-            <Row>
-              <Col span={12}>
-                <Icon
-                  className="trigger"
-                  type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
-                  onClick={this.toggle}
-                />
-              </Col>
-              <Col span={12}>
-                <ToolBar />
-              </Col>
-            </Row>
-          </Header>
+          <HeaderLayout collapsed={this.state.collapsed} toggle={this.toggle}/>
           <Content
             style={{
               margin: "24px 16px",
