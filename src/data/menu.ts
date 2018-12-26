@@ -25,14 +25,14 @@ export const MENU_LIST: Array<menu_list> = [
   {
     icon: "user",
     label: "test1",
-    key: "menu_1",
+    key: "index",
     path: '/index'
   },
   {
     icon: "video-camera",
     label: "test2",
-    key: "menu_2",
-    path: '/index'
+    key: "userList",
+    path: '/userList'
   },
   {
     icon: "upload",

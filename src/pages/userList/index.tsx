@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react'
+import UserList from './UserList';
 import MainLayout from 'src/layouts/MainLayout';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { MENU_LIST } from 'src/data/menu';
-import { withRouter, RouteComponentProps } from 'react-router-dom'
 
 interface Props extends RouteComponentProps {}
 
-class Index extends PureComponent<Props> {
+class index extends PureComponent<Props> {
   render() {
     const { location } = this.props
     const menu = MENU_LIST.find(menu => menu.path ===location.pathname)
@@ -13,11 +14,11 @@ class Index extends PureComponent<Props> {
       return false
     }
     return (
-      <MainLayout selectedKey={ menu.key }>
-        <div>Index</div>
+      <MainLayout selectedKey={"userList"}>
+        <UserList />
       </MainLayout>
     )
   }
 }
 
-export default withRouter(Index)
+export default withRouter(index)

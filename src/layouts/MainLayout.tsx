@@ -4,24 +4,31 @@ import "./index.less";
 
 const { Content } = Layout;
 
-import HeaderLayout from './HeaderLayout';
-import SiderLayout from './SiderLayout';
+import HeaderLayout from "./HeaderLayout";
+import SiderLayout from "./SiderLayout";
 
-export default class MainLayout extends PureComponent {
+interface Props {
+  selectedKey: string;
+}
+export default class MainLayout extends PureComponent<Props> {
   readonly state = {
     collapsed: false
-  }
+  };
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed
     });
   };
   render() {
+    const { selectedKey } = this.props;
     return (
       <Layout className="mainLayout">
-        <SiderLayout collapsed={ this.state.collapsed }/>
+        <SiderLayout
+          collapsed={this.state.collapsed}
+          selectedKey={selectedKey}
+        />
         <Layout>
-          <HeaderLayout collapsed={this.state.collapsed} toggle={this.toggle}/>
+          <HeaderLayout collapsed={this.state.collapsed} toggle={this.toggle} />
           <Content
             style={{
               margin: "24px 16px",

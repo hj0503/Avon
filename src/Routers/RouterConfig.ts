@@ -1,5 +1,6 @@
 import Login from "../pages/login/index";
 import Index from "../pages/index/index"
+import UserList from "../pages/userList/index"
 
 const routeConfig = [
   {
@@ -13,6 +14,10 @@ const routeConfig = [
   {
     path: "/index",
     component: Index
+  },
+  {
+    path: "/userList",
+    component: UserList
   }
 ];
 

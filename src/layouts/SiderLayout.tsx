@@ -8,7 +8,8 @@ const SubMenu = Menu.SubMenu;
 import { MENU_LIST } from "../data/menu";
 
 interface Props {
-  collapsed: boolean
+  collapsed: boolean,
+  selectedKey: string
 }
 interface State {
   openKeys: string[]
@@ -30,14 +31,14 @@ export default class SiderLayout extends PureComponent<Props, State> {
     }
   }
   render() {
-    const { collapsed } = this.props
+    const { collapsed, selectedKey } = this.props
     return (
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo" />
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={[MENU_LIST[0].key]}
+          defaultSelectedKeys={[selectedKey]}
         >
           {MENU_LIST.map(menu =>
             menu.subMenu ? (
