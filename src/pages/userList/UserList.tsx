@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { Table, Input, Button, Icon } from "antd";
+import { Table, Input, Button, Icon, Divider } from "antd";
 // import Highlighter from 'react-highlight-words';
 
 const data = [
@@ -86,9 +86,7 @@ export default class UserList extends PureComponent {
         setTimeout(() => this.searchInput.select());
       }
     },
-    render: text => (
-      <span>{text}</span>
-    )
+    render: text => <span>{text}</span>
   });
 
   handleSearch = (selectedKeys, confirm) => {
@@ -121,7 +119,20 @@ export default class UserList extends PureComponent {
         title: "Address",
         dataIndex: "address",
         key: "address",
+        width: "30%",
         ...this.getColumnSearchProps("address")
+      },
+      {
+        title: "Action",
+        dataIndex: "action",
+        key: "action",
+        render: (text, record) => (
+          <span>
+            <a href="javascript:;">Invite {record.name}</a>
+            <Divider type="vertical" />
+            <a href="javascript:;">Delete</a>
+          </span>
+        )
       }
     ];
     return <Table columns={columns} dataSource={data} />;
