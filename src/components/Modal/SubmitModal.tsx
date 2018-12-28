@@ -2,22 +2,32 @@ import React, { PureComponent } from "react";
 import { Modal, Button } from "antd";
 
 interface Props {
-  visible: boolean;
   title: string;
   onOk: () => void;
-  oncancel: () => void;
-  footer?: any[]
+  onCancel: () => void;
+  footer?: any[];
+  cancelText?: string;
+  okText?: string;
 }
 
 export default class SubmitModal extends PureComponent<Props> {
+  defaultProps = {
+    cancelText: "取消",
+    okText: "确认"
+  };
+  readonly state = {
+    visible: false,
+    loading: false
+  };
   render() {
-    const { visible, title, onOk, oncancel, footer } = this.props;
+    const { title, onOk, onCancel, footer } = this.props;
+    const { visible } = this.state;
     return (
       <Modal
         visible={visible}
         title={title}
         onOk={onOk}
-        onCancel={oncancel}
+        onCancel={onCancel}
         footer={footer ? footer : this.defaultFooter}
       >
         {this.props.children}
@@ -25,18 +35,35 @@ export default class SubmitModal extends PureComponent<Props> {
     );
   }
 
+  private onOk = () => {
+    const { onOk } = this.props
+    this.setState({
+      visible: true
+    })
+    onOk()
+  }
+
+  private onCancel = () => {
+    const { onCancel } = this.props
+    this.setState({
+      visible: false
+    })
+    onCancel()
+  }
+
   private defaultFooter = () => {
-    const { cancelText, okText } = this.props
+    const { cancelText, okText } = this.props;
+    const { loading } = this.state
     return [
       <>
-        <Button key="back" onClick={this.handleCancel}>
+        <Button key="back" onClick={this.onCancel}>
           {cancelText}
         </Button>
         <Button
           key="submit"
           type="primary"
           loading={loading}
-          onClick={this.handleOk}
+          onClick={this.onOk}
         >
           {okText}
         </Button>
