@@ -3,6 +3,7 @@ import { Modal, Button } from "antd";
 
 interface Props {
   title: string;
+  content: any;
   onOk: () => void;
   onCancel: () => void;
   footer?: any[];
