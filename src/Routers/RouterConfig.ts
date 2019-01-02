@@ -1,6 +1,7 @@
 import Login from "../pages/login/index";
 import Index from "../pages/index/index"
 import UserList from "../pages/userList/index"
+import Test from '../pages/test/index'
 
 const routeConfig = [
   {
@@ -18,6 +19,10 @@ const routeConfig = [
   {
     path: "/userList",
     component: UserList
+  },
+  {
+    path: "/test",
+    component: Test
   }
 ];
 

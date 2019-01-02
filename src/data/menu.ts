@@ -38,7 +38,7 @@ export const MENU_LIST: Array<menu_list> = [
     icon: "upload",
     label: "test3",
     key: "menu_3",
-    path: '/index'
+    path: '/test'
   },
   {
     icon: "user",
