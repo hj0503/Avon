@@ -4,31 +4,29 @@ import { Modal, Button } from "antd";
 interface Props {
   title: string;
   content?: any;
+  visible: boolean;
   onOk: () => void;
-  onCancel: () => void;
   footer?: any[];
   cancelText?: string;
   okText?: string;
 }
 
 export default class SubmitModal extends PureComponent<Props> {
-  defaultProps = {
+  static defaultProps = {
     cancelText: "取消",
     okText: "确认"
   };
   readonly state = {
-    visible: false,
     loading: false
   };
   render() {
-    const { title, onOk, onCancel, footer } = this.props;
-    const { visible } = this.state;
+    const { title, onOk, footer, visible } = this.props;
     return (
       <Modal
         visible={visible}
         title={title}
         onOk={onOk}
-        onCancel={onCancel}
+        onCancel={this.onCancel}
         footer={footer ? footer : this.defaultFooter}
       >
         {this.props.children}
@@ -45,11 +43,9 @@ export default class SubmitModal extends PureComponent<Props> {
   }
 
   private onCancel = () => {
-    const { onCancel } = this.props
     this.setState({
       visible: false
     })
-    onCancel()
   }
 
   private defaultFooter = () => {
