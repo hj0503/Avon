@@ -3,7 +3,7 @@ import { Modal, Button } from "antd";
 
 interface Props {
   title: string;
-  content?: any;
+  content: any;
   visible: boolean;
   onOk: () => void;
   footer?: any[];

@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import { Table, Input, Button, Icon, Divider } from "antd";
 import SubmitModal from 'src/components/Modal/SubmitModal';
-// import Highlighter from 'react-highlight-words';
 
 const data = [
   {
@@ -139,7 +138,7 @@ export default class UserList extends PureComponent {
     return (
       <>
         <Table columns={columns} dataSource={data} />
-        <SubmitModal title={ 'test'} visible={ false } onOk={ () => null }  />
+        <SubmitModal title={ 'test'} visible={ false } onOk={ () => null } content={ <p>test</p> }  />
       </>
     );
   }
