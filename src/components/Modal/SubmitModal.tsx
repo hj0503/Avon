@@ -27,7 +27,7 @@ export default class SubmitModal extends PureComponent<Props> {
         title={title}
         onOk={onOk}
         onCancel={this.onCancel}
-        footer={footer ? footer : this.defaultFooter}
+        footer={footer ? footer : this.defaultFooter()}
       >
         {this.props.children}
       </Modal>
