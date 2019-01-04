@@ -10,7 +10,7 @@ const menu = (
         rel="noopener noreferrer"
         href="http://www.alipay.com/"
       >
-        1st menu item
+        个人信息
       </a>
     </Menu.Item>
     <Menu.Item>
@@ -19,12 +19,12 @@ const menu = (
         rel="noopener noreferrer"
         href="http://www.taobao.com/"
       >
-        2nd menu item
+        hello world
       </a>
     </Menu.Item>
     <Menu.Item>
       <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
-        3rd menu item
+        退出登录
       </a>
     </Menu.Item>
   </Menu>
