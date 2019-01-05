@@ -1,6 +1,6 @@
 import axios from 'axios';
 import queryString from 'query-string';
-import { CODE_SUCCESS } from 'src/data/codes';
+// import { CODE_SUCCESS } from 'src/data/codes';
 
 function throwIfBadStatus(response: Response) {
   if (response.status >= 200 && response.status < 300) {
@@ -12,12 +12,14 @@ function throwIfBadStatus(response: Response) {
   throw error;
 }
 
-function throwIfUnknownException(response: Response, body: ApiResponse<any>, options) {
-  if (body.code !== CODE_SUCCESS) {
-    console.log('[', response.url, '] respond bad body [', body.code, body.message, body.data, ']', 'option is [', options, ']');
-    throw body;
-  }
-}
+
+//用户是否登录
+// function throwIfUnknownException(response: Response, body: ApiResponse<any>, options) {
+//   if (body.code !== CODE_SUCCESS) {
+//     console.log('[', response.url, '] respond bad body [', body.code, body.message, body.data, ']', 'option is [', options, ']');
+//     throw body;
+//   }
+// }
 
 function clearNull(key, value) {
   if (value !== null) {
@@ -56,7 +58,7 @@ export default async function request<T>(url, options?): Promise<RequestResponse
 
   const body: ApiResponse<T> = await response;
 
-  throwIfUnknownException(response, body, options);
+  // throwIfUnknownException(response, body, options);
 
   return {
     body,

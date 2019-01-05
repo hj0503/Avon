@@ -1,31 +1,33 @@
 import React, { PureComponent } from "react";
 import Login from "./Login";
 import { withRouter, RouteComponentProps } from "react-router";
-import { logout } from "src/api/userInfo";
-// import md5 from "js-md5";
+import { logout } from "src/api/authentication";
+import md5 from "js-md5";
+import { fetchUserInfo } from "src/reducers/authReducer";
+import { connect } from "react-redux";
 
-interface IndexProps extends RouteComponentProps {
-  history: any;
+interface Props extends RouteComponentProps {
+  history;
+  fetchUserInfo;
 }
 
-class Index extends PureComponent<IndexProps> {
+class Index extends PureComponent<Props> {
   readonly state = {
     loginLoading: false
   };
   onLogin = async (username, password) => {
-    const { history } = this.props
-    history.push('/index')
-    // this.setState({ loginLoading: true });
-    // const params = {
-    //   username,
-    //   password: md5(password)
-    // };
-    // const body = await from(params);
-    // if(body.succeed) {
-    //   history.push('/index')
-    // } else {
-    //   alert(body.message)
-    // }
+    const { history } = this.props;
+    this.setState({ loginLoading: true });
+    const params = {
+      username,
+      password: md5(password)
+    };
+    this.props.fetchUserInfo(params).then(() => {
+      this.setState({
+        loginLoading: false
+      });
+      history.push("/index");
+    });
   };
 
   onLogout = () => {
@@ -43,4 +45,17 @@ class Index extends PureComponent<IndexProps> {
   }
 }
 
-export default withRouter(Index);
+function mapDispatchToProps(dispatch) {
+  return {
+    async fetchUserInfo(params) {
+      await dispatch(fetchUserInfo(params));
+    }
+  };
+}
+
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(Index)
+);

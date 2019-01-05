@@ -1,1 +1,1 @@
-export const TEST_DISPATCH = "TEST_DISPATCH"
+export const UPDATE_USER_INFO = "UPDATE_USER_INFO"

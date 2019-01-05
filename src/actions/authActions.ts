@@ -1,9 +1,9 @@
-import { TEST_DISPATCH } from './types'
+import { UPDATE_USER_INFO } from './types'
 
-export const registerUser = (userData: any) => {
+export const updateUserInfo = (userData: any) => {
   //给reducer
   return {
-    type: TEST_DISPATCH,
+    type: UPDATE_USER_INFO,
     payload: userData
   }
 }
