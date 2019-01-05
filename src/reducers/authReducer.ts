@@ -1,11 +1,20 @@
+import { EMPTY_USER_INFO } from './../actions/types';
 import { UPDATE_USER_INFO } from "../actions/types";
-import { login } from 'src/api/authentication';
-import { updateUserInfo } from 'src/actions/authActions';
+import { login, logout } from "src/api/authentication";
+import { updateUserInfo, emptyUserInfo } from "src/actions/authActions";
 
-type State = {
-  userInfo: object;
+export type UserInfo = {
+  userName: string
+}
+
+export type State = {
+  userInfo: UserInfo;
   isAuthenticated: boolean;
   user: number;
+};
+
+export type Store = {
+  auth: State;
 };
 
 const initialState = {
@@ -21,6 +30,11 @@ export default function(state = initialState, action: any) {
         ...state,
         userInfo: action.payload
       };
+    case EMPTY_USER_INFO:
+      return {
+        ...state,
+        userInfo: action.payload
+      }
     default:
       return state;
   }
@@ -28,10 +42,17 @@ export default function(state = initialState, action: any) {
 
 export function fetchUserInfo(params) {
   return dispatch => {
-    return login(params)
-      .then(res => {
-        const { body } = res
-        dispatch(updateUserInfo(body))
-      })
-  }
+    return login(params).then(res => {
+      const { body } = res;
+      dispatch(updateUserInfo({ userName: body.userName }));
+    });
+  };
 }
+
+export function logoutUser() {
+  return dispatch => {
+    return logout().then(() => {
+      dispatch(emptyUserInfo())
+    })
+  }
+} 
