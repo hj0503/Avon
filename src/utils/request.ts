@@ -1,5 +1,6 @@
 import axios from 'axios';
 import queryString from 'query-string';
+// import { hashHistory } from 'react-router';
 // import { CODE_SUCCESS } from 'src/data/codes';
 
 function throwIfBadStatus(response: Response) {

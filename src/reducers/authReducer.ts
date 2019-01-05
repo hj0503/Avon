@@ -1,11 +1,11 @@
-import { EMPTY_USER_INFO } from './../actions/types';
+import { EMPTY_USER_INFO } from "./../actions/types";
 import { UPDATE_USER_INFO } from "../actions/types";
 import { login, logout } from "src/api/authentication";
 import { updateUserInfo, emptyUserInfo } from "src/actions/authActions";
 
 export type UserInfo = {
-  userName: string
-}
+  userName: string;
+};
 
 export type State = {
   userInfo: UserInfo;
@@ -34,7 +34,7 @@ export default function(state = initialState, action: any) {
       return {
         ...state,
         userInfo: action.payload
-      }
+      };
     default:
       return state;
   }
@@ -44,6 +44,7 @@ export function fetchUserInfo(params) {
   return dispatch => {
     return login(params).then(res => {
       const { body } = res;
+      localStorage.setItem("userName", body.userName);
       dispatch(updateUserInfo({ userName: body.userName }));
     });
   };
@@ -52,7 +53,8 @@ export function fetchUserInfo(params) {
 export function logoutUser() {
   return dispatch => {
     return logout().then(() => {
-      dispatch(emptyUserInfo())
-    })
-  }
-} 
+      localStorage.removeItem("userName")
+      dispatch(emptyUserInfo());
+    });
+  };
+}
