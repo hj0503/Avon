@@ -1,7 +1,6 @@
 import { EMPTY_USER_INFO } from "./../actions/types";
 import { UPDATE_USER_INFO } from "../actions/types";
 import { login, logout } from "src/api/authentication";
-import { updateUserInfo, emptyUserInfo } from "src/actions/authActions";
 
 export type UserInfo = {
   userName: string;
@@ -45,7 +44,6 @@ export function fetchUserInfo(params) {
     return login(params).then(res => {
       const { body } = res;
       localStorage.setItem("userName", body.userName);
-      dispatch(updateUserInfo({ userName: body.userName }));
     });
   };
 }
@@ -54,7 +52,6 @@ export function logoutUser() {
   return dispatch => {
     return logout().then(() => {
       localStorage.removeItem("userName")
-      dispatch(emptyUserInfo());
     });
   };
 }
