@@ -11,7 +11,7 @@ async function _post<T>(name, param: any = null) {
 }
 
 export async function login(params) {
-  const resp = await _post<any>("login", params);
+  const resp = await postByJson<any>("/login", params);
   const { body: {data} } = resp
   return data
 }

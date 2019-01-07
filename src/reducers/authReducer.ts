@@ -55,3 +55,7 @@ export function logoutUser() {
     });
   };
 }
+
+export function fetchSysMenu() {
+  
+}
