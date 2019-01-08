@@ -3,18 +3,19 @@ import UserList from './UserList';
 import MainLayout from 'src/layouts/MainLayout';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { MENU_LIST } from 'src/data/menu';
+import { findSelectMenu } from 'src/utils/common';
 
 interface Props extends RouteComponentProps {}
 
 class index extends PureComponent<Props> {
   render() {
     const { location } = this.props
-    const menu = MENU_LIST.find(menu => menu.path ===location.pathname)
-    if(!menu) {
+    const [key, subKey] = findSelectMenu(MENU_LIST, location.pathname)
+    if(!key && !subKey) {
       return false
     }
     return (
-      <MainLayout selectedKey={"userList"}>
+      <MainLayout defaultSelectedKeys={ key } defaultOpenKeys={subKey}>
         <UserList />
       </MainLayout>
     )

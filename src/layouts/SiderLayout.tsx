@@ -9,7 +9,8 @@ import { MENU_LIST } from "../data/menu";
 
 interface Props {
   collapsed: boolean,
-  selectedKey: string
+  defaultSelectedKeys: string;
+  defaultOpenKeys: string;
 }
 interface State {
   openKeys: string[]
@@ -31,14 +32,15 @@ export default class SiderLayout extends PureComponent<Props, State> {
     }
   }
   render() {
-    const { collapsed, selectedKey } = this.props
+    const { collapsed, defaultSelectedKeys, defaultOpenKeys } = this.props
     return (
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo" />
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={[selectedKey]}
+          defaultSelectedKeys={[defaultSelectedKeys]}
+          defaultOpenKeys={[defaultOpenKeys]}
         >
           {MENU_LIST.map(menu =>
             menu.subMenu ? (
@@ -62,18 +64,18 @@ export default class SiderLayout extends PureComponent<Props, State> {
                         </span>
                       }
                     >
-                      {sub.subMenu.map(sub => (
-                        <Menu.Item key={sub.key}>
-                          <Link to={menu.path}>
-                            <Icon type={sub.icon} />
-                            <span>{sub.label}</span>
+                      {sub.subMenu.map(subSub => (
+                        <Menu.Item key={subSub.key}>
+                          <Link to={subSub.path}>
+                            <Icon type={subSub.icon} />
+                            <span>{subSub.label}</span>
                           </Link>
                         </Menu.Item>
                       ))}
                     </SubMenu>
                   ) : (
                     <Menu.Item key={sub.key}>
-                      <Link to={menu.path}>
+                      <Link to={sub.path}>
                         <Icon type={sub.icon} />
                         <span>{sub.label}</span>
                       </Link>

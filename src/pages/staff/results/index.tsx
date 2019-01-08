@@ -6,7 +6,7 @@ import { findSelectMenu } from 'src/utils/common';
 
 interface Props extends RouteComponentProps {}
 
-class Index extends PureComponent<Props> {
+class Results extends PureComponent<Props> {
   render() {
     const { location } = this.props
     const [key, subKey] = findSelectMenu(MENU_LIST, location.pathname)
@@ -15,10 +15,10 @@ class Index extends PureComponent<Props> {
     }
     return (
       <MainLayout defaultSelectedKeys={ key } defaultOpenKeys={subKey}>
-        <div>commission</div>
+        <div>Results</div>
       </MainLayout>
     )
   }
 }
 
-export default withRouter(Index)
+export default withRouter(Results)

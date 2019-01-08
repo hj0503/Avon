@@ -20,7 +20,8 @@ class Index extends PureComponent<Props> {
     this.setState({ loginLoading: true });
     const params = {
       username,
-      password: md5(password)
+      password: md5(password),
+      remeberMe: "true"
     };
     this.props.fetchUserInfo(params).then(() => {
       this.setState({

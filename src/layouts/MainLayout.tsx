@@ -8,7 +8,8 @@ import HeaderLayout from "./HeaderLayout";
 import SiderLayout from "./SiderLayout";
 
 interface Props {
-  selectedKey: string;
+  defaultSelectedKeys: string;
+  defaultOpenKeys: string;
 }
 export default class MainLayout extends PureComponent<Props> {
   readonly state = {
@@ -20,12 +21,13 @@ export default class MainLayout extends PureComponent<Props> {
     });
   };
   render() {
-    const { selectedKey } = this.props;
+    const { defaultSelectedKeys, defaultOpenKeys } = this.props;
     return (
       <Layout className="mainLayout">
         <SiderLayout
           collapsed={this.state.collapsed}
-          selectedKey={selectedKey}
+          defaultSelectedKeys={defaultSelectedKeys}
+          defaultOpenKeys={defaultOpenKeys}
         />
         <Layout>
           <HeaderLayout collapsed={this.state.collapsed} toggle={this.toggle} />

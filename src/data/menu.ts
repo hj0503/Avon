@@ -1,27 +1,27 @@
-export interface menu {
+export interface Menu {
   icon: string,
   label: string,
   key: string,
   path: string
 }
 
-export interface subMenu {
+export interface SubMenu {
   icon: string,
   label: string,
   key: string,
   path: string
-  subMenu?: Array<menu>
+  subMenu?: Array<Menu>
 }
 
-export interface menu_list {
+export interface Menu_list {
   icon: string,
   label: string,
   key: string,
   path: string
-  subMenu?: Array<subMenu>
+  subMenu?: Array<SubMenu>
 }
 
-export const MENU_LIST: Array<menu_list> = [
+export const MENU_LIST: Array<Menu_list> = [
   {
     icon: "user",
     label: "test1",
@@ -32,13 +32,33 @@ export const MENU_LIST: Array<menu_list> = [
     icon: "video-camera",
     label: "test2",
     key: "userList",
-    path: '/userList'
+    path: '/userList',
   },
   {
     icon: "upload",
-    label: "test3",
-    key: "menu_3",
-    path: '/test'
+    label: "员工管理",
+    key: "personnel",
+    path: '/staff',
+    subMenu: [
+      {
+        icon: "upload",
+        label: "员工列表",
+        key: "management",
+        path: '/personnel/management',
+      },
+      {
+        icon: "user",
+        label: "员工提成明细",
+        key: "commission",
+        path: '/personnel/commission'
+      },
+      {
+        icon: "user",
+        label: "员工业绩明细",
+        key: "results",
+        path: '/personnel/results'
+      }
+    ]
   },
   {
     icon: "user",
@@ -50,27 +70,13 @@ export const MENU_LIST: Array<menu_list> = [
         icon: "upload",
         label: "test3",
         key: "menu_6",
-        path: '/index',
-        subMenu: [
-          {
-            icon: "upload",
-            label: "test5",
-            key: "menu_8",
-            path: '/index'
-          },
-          {
-            icon: "user",
-            label: "test6",
-            key: "menu_9",
-            path: '/index'
-          }
-        ]
+        path: '/inde',
       },
       {
         icon: "user",
         label: "test4",
         key: "menu_7",
-        path: '/index'
+        path: '/ind'
       }
     ]
   },
