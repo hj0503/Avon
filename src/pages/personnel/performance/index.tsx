@@ -3,12 +3,12 @@ import MainLayout from "src/layouts/MainLayout";
 import { MENU_LIST } from "src/data/menu";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { findSelectMenu } from "src/utils/common";
-import CommissionTable from "src/components/Table/CommissionTable";
+import PerfomanceTable from "src/components/Table/PerformanceTable";
 import { showDeleteConfirm } from "src/components/Modal/Confirm";
 
 interface Props extends RouteComponentProps {}
 
-class Commision extends PureComponent<Props> {
+class Results extends PureComponent<Props> {
   onDelete = () => {
     showDeleteConfirm();
   };
@@ -21,7 +21,7 @@ class Commision extends PureComponent<Props> {
     }
     return (
       <MainLayout defaultSelectedKeys={key} defaultOpenKeys={subKey}>
-        <CommissionTable
+        <PerfomanceTable
           dataSource={this.datasource()}
           onDelete={this.onDelete}
         />
@@ -38,8 +38,7 @@ class Commision extends PureComponent<Props> {
         orderNumber: "string",
         orderName: "string",
         time: "string",
-        amount: "string",
-        total: "string"
+        amount: "string"
       },
       {
         name: "string",
@@ -48,8 +47,7 @@ class Commision extends PureComponent<Props> {
         orderNumber: "string",
         orderName: "string",
         time: "string",
-        amount: "string",
-        total: "string"
+        amount: "string"
       },
       {
         name: "string",
@@ -58,8 +56,7 @@ class Commision extends PureComponent<Props> {
         orderNumber: "string",
         orderName: "string",
         time: "string",
-        amount: "string",
-        total: "string"
+        amount: "string"
       },
       {
         name: "string",
@@ -68,11 +65,10 @@ class Commision extends PureComponent<Props> {
         orderNumber: "string",
         orderName: "string",
         time: "string",
-        amount: "string",
-        total: "string"
-      },
+        amount: "string"
+      }
     ];
   };
 }
 
-export default withRouter(Commision);
+export default withRouter(Results);

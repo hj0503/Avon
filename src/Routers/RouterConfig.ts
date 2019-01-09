@@ -4,7 +4,7 @@ import UserList from "../pages/userList/index"
 import Test from '../pages/test/index'
 import Commision from "../pages/personnel/commision"
 import Management from "../pages/personnel/management"
-import Results from "../pages/personnel/results"
+import Results from "../pages/personnel/performance"
 
 const routeConfig = [
   {
