@@ -36,7 +36,7 @@ export default class MainLayout extends PureComponent<Props> {
               margin: "24px 16px",
               padding: 24,
               background: "#fff",
-              minHeight: 280
+              minHeight: "auto"
             }}
           >
             {this.props.children}

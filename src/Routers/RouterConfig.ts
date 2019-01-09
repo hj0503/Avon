@@ -2,9 +2,9 @@ import Login from "../pages/login/index";
 import Index from "../pages/index/index"
 import UserList from "../pages/userList/index"
 import Test from '../pages/test/index'
-import Commision from "../pages/staff/commision"
-import Management from "../pages/staff/management"
-import Results from "../pages/staff/results"
+import Commision from "../pages/personnel/commision"
+import Management from "../pages/personnel/management"
+import Results from "../pages/personnel/results"
 
 const routeConfig = [
   {
