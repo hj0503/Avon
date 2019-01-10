@@ -1,24 +1,12 @@
 import React, { PureComponent } from 'react'
 import MainLayout from 'src/layouts/MainLayout';
-import { MENU_LIST } from 'src/data/menu';
-import { withRouter, RouteComponentProps } from 'react-router-dom'
-import { findSelectMenu } from 'src/utils/common';
 
-interface Props extends RouteComponentProps {}
-
-class Index extends PureComponent<Props> {
+export default class Index extends PureComponent {
   render() {
-    const { location } = this.props
-    const [key, subKey] = findSelectMenu(MENU_LIST, location.pathname)
-    if(!key && !subKey) {
-      return false
-    }
     return (
-      <MainLayout defaultSelectedKeys={ key } defaultOpenKeys={subKey}>
+      <MainLayout>
         <div>commission</div>
       </MainLayout>
     )
   }
 }
-
-export default withRouter(Index)

@@ -1,26 +1,16 @@
 import React, { PureComponent } from "react";
 import MainLayout from "src/layouts/MainLayout";
-import { MENU_LIST } from "src/data/menu";
-import { withRouter, RouteComponentProps } from "react-router-dom";
-import { findSelectMenu } from "src/utils/common";
 import CommissionTable from "src/components/Table/CommissionTable";
 import { showDeleteConfirm } from "src/components/Modal/Confirm";
 
-interface Props extends RouteComponentProps {}
-
-class Commision extends PureComponent<Props> {
+export default class Commision extends PureComponent {
   onDelete = () => {
     showDeleteConfirm();
   };
 
   render() {
-    const { location } = this.props;
-    const [key, subKey] = findSelectMenu(MENU_LIST, location.pathname);
-    if (!key && !subKey) {
-      return false;
-    }
     return (
-      <MainLayout defaultSelectedKeys={key} defaultOpenKeys={subKey}>
+      <MainLayout>
         <CommissionTable
           dataSource={this.datasource()}
           onDelete={this.onDelete}
@@ -74,5 +64,3 @@ class Commision extends PureComponent<Props> {
     ];
   };
 }
-
-export default withRouter(Commision);

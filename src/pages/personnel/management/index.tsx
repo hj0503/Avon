@@ -1,14 +1,9 @@
 import React, { PureComponent } from "react";
 import MainLayout from "src/layouts/MainLayout";
-import { MENU_LIST } from "src/data/menu";
-import { withRouter, RouteComponentProps } from "react-router-dom";
-import { findSelectMenu } from "src/utils/common";
 import PersonnelTable from "src/components/Table/PersonnelTable";
 import { showDeleteConfirm } from "src/components/Modal/Confirm";
 
-interface Props extends RouteComponentProps {}
-
-class Management extends PureComponent<Props> {
+export default class Management extends PureComponent {
   onModify = () => {
     console.log("modify");
   };
@@ -18,14 +13,8 @@ class Management extends PureComponent<Props> {
   };
 
   render() {
-    const { location } = this.props;
-    const [key, subKey] = findSelectMenu(MENU_LIST, location.pathname);
-    if (!key && !subKey) {
-      return false;
-    }
-
     return (
-      <MainLayout defaultSelectedKeys={key} defaultOpenKeys={subKey}>
+      <MainLayout>
         <PersonnelTable
           dataSource={this.datasource()}
           onModify={this.onModify}
@@ -79,5 +68,3 @@ class Management extends PureComponent<Props> {
     ];
   }
 }
-
-export default withRouter(Management);

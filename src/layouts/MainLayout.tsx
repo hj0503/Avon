@@ -1,17 +1,17 @@
 import React, { PureComponent } from "react";
 import { Layout } from "antd";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 import "./index.less";
 
 const { Content } = Layout;
 
 import HeaderLayout from "./HeaderLayout";
 import SiderLayout from "./SiderLayout";
+import { findSelectMenu } from "src/utils/common";
+import { MENU_LIST } from "src/data/menu";
 
-interface Props {
-  defaultSelectedKeys: string;
-  defaultOpenKeys: string;
-}
-export default class MainLayout extends PureComponent<Props> {
+interface Props extends RouteComponentProps {}
+class MainLayout extends PureComponent<Props> {
   readonly state = {
     collapsed: false
   };
@@ -21,13 +21,17 @@ export default class MainLayout extends PureComponent<Props> {
     });
   };
   render() {
-    const { defaultSelectedKeys, defaultOpenKeys } = this.props;
+    const { location } = this.props;
+    const [key, subKey] = findSelectMenu(MENU_LIST, location.pathname);
+    if (!key && !subKey) {
+      return false;
+    }
     return (
       <Layout className="mainLayout">
         <SiderLayout
           collapsed={this.state.collapsed}
-          defaultSelectedKeys={defaultSelectedKeys}
-          defaultOpenKeys={defaultOpenKeys}
+          defaultSelectedKeys={key}
+          defaultOpenKeys={subKey}
         />
         <Layout>
           <HeaderLayout collapsed={this.state.collapsed} toggle={this.toggle} />
@@ -46,3 +50,5 @@ export default class MainLayout extends PureComponent<Props> {
     );
   }
 }
+
+export default withRouter(MainLayout);

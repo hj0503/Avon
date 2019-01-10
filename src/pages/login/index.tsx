@@ -21,19 +21,19 @@ class Login extends PureComponent<LoginProps> {
   };
 
   handleLogin = e => {
-    const {history, form} = this.props
+    const { history, form } = this.props;
     e.preventDefault();
     form.validateFields((err, values) => {
       if (!err) {
         this.setState({
           loginLoading: true
-        })
-        const {username, password} = values
-          const params = {
-            username,
-            password: md5(password),
-            remeberMe: "true"
-          };
+        });
+        const { username, password } = values;
+        const params = {
+          username,
+          password: md5(password),
+          remeberMe: "true"
+        };
         this.props.fetchUserInfo(params).then(() => {
           this.setState({
             loginLoading: false
