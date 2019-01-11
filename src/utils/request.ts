@@ -43,7 +43,6 @@ export default async function request<T>(url, options?): Promise<RequestResponse
   let response:any = null;
 
   logging(url, options);
-
   try {
     response = await axios(url, {
       cache: 'no-cache',
@@ -67,8 +66,13 @@ export default async function request<T>(url, options?): Promise<RequestResponse
 }
 
 export async function get(url, params, options?) {
+  if(!options) {
+    options = {}
+  }
   if (!url.indexOf('?') && params) {
     url = url + '?' + queryString.stringify(params);
+  } else {
+    options.params = params
   }
   return await request(url, { ...options, method: 'GET' });
 }

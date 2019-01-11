@@ -6,7 +6,7 @@ type PersonnelData = {
   name: string;
   position: string;
   phone: string;
-  wage: number;
+  basicWage: string;
   status: string;
   addTime: string;
   entryTime: string;
