@@ -138,7 +138,7 @@ export default class UserList extends PureComponent {
     return (
       <>
         <Table columns={columns} dataSource={data} />
-        <SubmitModal title={ 'test'} visible={ false } onOk={ () => null } content={ <p>test</p> }  />
+        <SubmitModal title={ 'test'} onClose={() => null} onOk={ () => null }  />
       </>
     );
   }

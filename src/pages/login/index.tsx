@@ -39,15 +39,12 @@ class Login extends PureComponent<LoginProps> {
             loginLoading: false
           });
           history.push("/index");
+        }).catch(err => {
+          this.setState({
+            loginLoading: false
+          })
         });
       }
-    });
-  };
-
-  onChange = event => {
-    const e = event.target;
-    this.setState({
-      [e.name]: e.value
     });
   };
   render() {
@@ -65,7 +62,6 @@ class Login extends PureComponent<LoginProps> {
               prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
               name="username"
               type="test"
-              onChange={this.onChange}
               placeholder="Username"
             />
           )}
@@ -78,7 +74,6 @@ class Login extends PureComponent<LoginProps> {
               prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
               name="password"
               type="password"
-              onChange={this.onChange}
               placeholder="Password"
             />
           )}

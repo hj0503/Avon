@@ -4,8 +4,11 @@ export function mapPersonnelData(data: any[]) {
       id: item.id,
       name: item.name,
       position: item.position,
+      phone: item.phone,
       basicWage: item.basicWage,
-      jobNumber: item.jobNumber
+      status: item.status,
+      entryTime: item.entryTime,
+      jobNumber: item.jobNumber,
     }
   })
 }

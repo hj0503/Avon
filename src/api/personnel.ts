@@ -7,8 +7,8 @@ type Personnel = {
   size: number
 }
 
-export async function personnel<T>(params: Personnel) {
+export async function personnel<T>(params: Personnel): Promise<any> {
   const resp = await get('http://rap2api.taobao.org/app/mock/123392/personnel', params)
-  const { body } = resp
-  return body
+  const { body: {data} } = resp
+  return data
 }

@@ -8,14 +8,13 @@ type PersonnelData = {
   phone: string;
   basicWage: string;
   status: string;
-  addTime: string;
   entryTime: string;
   jobNumber: string;
 };
 
 interface Props {
   dataSource: PersonnelData[];
-  onModify: () => void;
+  onOpen: (record: any) => void;
   onDelete: () => void;
 }
 
@@ -47,18 +46,13 @@ export default class PersonnelTable extends PureComponent<Props> {
       },
       {
         title: "基本工资",
-        key: "wage",
-        dataIndex: "wage"
+        key: "basicWage",
+        dataIndex: "basicWage"
       },
       {
         title: "状态",
         key: "status",
         dataIndex: "status"
-      },
-      {
-        title: "添加时间",
-        key: "addTime",
-        dataIndex: "addTime"
       },
       {
         title: "入职时间",
@@ -71,11 +65,11 @@ export default class PersonnelTable extends PureComponent<Props> {
         dataIndex: "jobNumber"
       },
       {
-        title: "Action",
+        title: "操作",
         key: "action",
         render: (text, record) => (
           <span>
-            <a href="javascript:;" onClick={this.props.onModify}>修改</a>
+            <a href="javascript:;" onClick={() => this.props.onOpen(record)}>修改</a>
             <Divider type="vertical" />
             <a href="javascript:;" onClick={this.props.onDelete}>删除</a>
           </span>
