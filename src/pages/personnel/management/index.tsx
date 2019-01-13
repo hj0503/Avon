@@ -4,17 +4,21 @@ import PersonnelTable from "src/pages/personnel/management/components/PersonnelT
 import { showDeleteConfirm } from "src/components/Modal/Confirm";
 import { personnel } from "src/api/personnel";
 import ContainerSpin from "src/components/Spin/ContainerSpin";
-import { mapPersonnelData } from "./services";
 import ModifyModal from "./components/ModifyModal";
+import { mapPersonnelData } from './services';
 
 export default class Management extends PureComponent {
   readonly state = {
     dataSource: [],
     loading: false,
     visible: false,
-    selectId: null
+    selectId: ""
   };
   componentDidMount() {
+    this.fetchPersonnelList()
+  }
+
+  fetchPersonnelList = () => {
     const params = {
       nameOrJobNumber: "",
       position: "",
@@ -60,7 +64,7 @@ export default class Management extends PureComponent {
   };
 
   render() {
-    const { loading, dataSource, visible } = this.state;
+    const { loading, dataSource, visible, selectId } = this.state;
     return (
       <MainLayout>
         <ContainerSpin loading={loading}>
@@ -69,7 +73,7 @@ export default class Management extends PureComponent {
             onOpen={this.onOpen}
             onDelete={this.onDelete}
           />
-          {visible && <ModifyModal onClose={this.onClose} onOk={this.onOk} />}
+          {visible && <ModifyModal onClose={this.onClose} onOk={this.onOk} selectId={selectId} />}
         </ContainerSpin>
       </MainLayout>
     );

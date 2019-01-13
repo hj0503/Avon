@@ -77,6 +77,30 @@ export async function get(url, params, options?) {
   return await request(url, { ...options, method: 'GET' });
 }
 
+export async function put(url, params, options?) {
+  if(!options) {
+    options = {}
+  }
+  if (!url.indexOf('?') && params) {
+    url = url + '?' + queryString.stringify(params);
+  } else {
+    options.params = params
+  }
+  return await request(url, { ...options, method: 'PUT' });
+}
+
+export async function Delete(url, params, options?) {
+  if(!options) {
+    options = {}
+  }
+  if (!url.indexOf('?') && params) {
+    url = url + '?' + queryString.stringify(params);
+  } else {
+    options.params = params
+  }
+  return await request(url, { ...options, method: 'DELETE' });
+}
+
 export async function post<T>(url, options?) {
   if (!options) {
     options = {};

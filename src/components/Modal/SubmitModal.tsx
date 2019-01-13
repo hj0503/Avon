@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { Modal, Button } from "antd";
+import { Modal } from "antd";
 
 interface Props {
   title: string;
@@ -8,6 +8,7 @@ interface Props {
   footer?;
   cancelText?: string;
   okText?: string;
+  confirmLoading?: boolean;
 }
 
 export default class SubmitModal extends PureComponent<Props> {
@@ -21,37 +22,26 @@ export default class SubmitModal extends PureComponent<Props> {
   };
 
   render() {
-    const { title, onOk, onClose, footer } = this.props;
+    const {
+      title,
+      onOk,
+      onClose,
+      confirmLoading,
+      okText,
+      cancelText
+    } = this.props;
     return (
       <Modal
         visible={true}
         title={title}
         onOk={onOk}
+        okText={okText}
         onCancel={onClose}
-        footer={footer ? footer : this.defaultFooter()}
+        cancelText={cancelText}
+        confirmLoading={confirmLoading}
       >
         {this.props.children}
       </Modal>
     );
   }
-
-  private defaultFooter = () => {
-    const { cancelText, okText, onClose, onOk } = this.props;
-    const { loading } = this.state
-    return [
-      <div key="1">
-        <Button key="back" onClick={onClose}>
-          {cancelText}
-        </Button>
-        <Button
-          key="submit"
-          type="primary"
-          loading={loading}
-          onClick={onOk}
-        >
-          {okText}
-        </Button>
-      </div>
-    ];
-  };
 }
