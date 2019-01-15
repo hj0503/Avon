@@ -34,7 +34,7 @@ export default class SubmitModal extends PureComponent<Props> {
       <Modal
         visible={true}
         title={title}
-        onOk={onOk}
+        onOk={onOk} 
         okText={okText}
         onCancel={onClose}
         cancelText={cancelText}
