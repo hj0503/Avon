@@ -19,9 +19,9 @@ export default class SubmitModal extends PureComponent<Props> {
   };
   readonly state = {
     loading: false
-  };
+  }; 
 
-  render() {
+  render() { 
     const {
       title,
       onOk,
