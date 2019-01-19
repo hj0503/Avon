@@ -2,10 +2,10 @@ import React, { PureComponent } from "react";
 import MainLayout from "src/layouts/MainLayout";
 import PersonnelTable from "src/pages/personnel/management/components/PersonnelTable";
 import { showDeleteConfirm } from "src/components/Modal/Confirm";
-import { personnel } from "src/api/personnel";
+import { personnel, deletePersonnel } from "src/api/personnel";
 import ContainerSpin from "src/components/Spin/ContainerSpin";
 import ModifyModal from "./components/ModifyModal";
-import { mapPersonnelData } from './services';
+import { mapPersonnelData } from "./services";
 
 export default class Management extends PureComponent {
   readonly state = {
@@ -15,7 +15,7 @@ export default class Management extends PureComponent {
     selectId: ""
   };
   componentDidMount() {
-    this.fetchPersonnelList()
+    this.fetchPersonnelList();
   }
 
   fetchPersonnelList = () => {
@@ -40,13 +40,21 @@ export default class Management extends PureComponent {
           loading: false
         });
       });
-  }
+  };
+
+  deletePersonnel = async id => {
+    const params = {
+      id
+    };
+    await deletePersonnel(params);
+    await this.fetchPersonnelList();
+  };
 
   onOk = () => {
     this.onClose();
   };
 
-  onOpen = (record) => {
+  onOpen = record => {
     this.setState({
       visible: true,
       selectId: record.id
@@ -59,8 +67,8 @@ export default class Management extends PureComponent {
     });
   };
 
-  onDelete = () => {
-    showDeleteConfirm();
+  onDelete = record => {
+    showDeleteConfirm(() => this.deletePersonnel(record.id));
   };
 
   render() {
@@ -73,7 +81,13 @@ export default class Management extends PureComponent {
             onOpen={this.onOpen}
             onDelete={this.onDelete}
           />
-          {visible && <ModifyModal onClose={this.onClose} onOk={this.onOk} selectId={selectId} />}
+          {visible && (
+            <ModifyModal
+              onClose={this.onClose}
+              onOk={this.onOk}
+              selectId={selectId}
+            />
+          )}
         </ContainerSpin>
       </MainLayout>
     );

@@ -15,7 +15,7 @@ type PersonnelData = {
 interface Props {
   dataSource: PersonnelData[];
   onOpen: (record: any) => void;
-  onDelete: () => void;
+  onDelete: (record: any) => void;
 }
 
 export default class PersonnelTable extends PureComponent<Props> {
@@ -71,7 +71,7 @@ export default class PersonnelTable extends PureComponent<Props> {
           <span>
             <a href="javascript:;" onClick={() => this.props.onOpen(record)}>修改</a>
             <Divider type="vertical" />
-            <a href="javascript:;" onClick={this.props.onDelete}>删除</a>
+            <a href="javascript:;" onClick={() => this.props.onDelete(record)}>删除</a>
           </span>
         )
       }

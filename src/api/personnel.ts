@@ -16,6 +16,10 @@ type ModifyPersonnel = {
   basicWage: string;
 };
 
+type DeletePersonnel = {
+  id: string;
+}
+
 export async function personnel<T>(params: Personnel): Promise<any> {
   const resp = await get(
     "http://rap2api.taobao.org/app/mock/123392/personnel",
@@ -36,7 +40,7 @@ export async function modifyPersonnel<T>(params: ModifyPersonnel): Promise<any> 
   return body;
 }
 
-export async function deletePersonnel<T>(params: Personnel): Promise<any> {
+export async function deletePersonnel<T>(params: DeletePersonnel): Promise<any> {
   const resp = await Delete(
     "http://rap2api.taobao.org/app/mock/123391/personnel",
     params
