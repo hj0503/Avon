@@ -27,7 +27,7 @@ export default class ModifyModal extends PureComponent<Props> {
           status,
           basicWage
         };
-        this.onModifyPersonnel(params)
+        this.onModifyPersonnel(params);
       }
     });
   };
@@ -35,12 +35,18 @@ export default class ModifyModal extends PureComponent<Props> {
     this.setState({
       confirmLoading: true
     });
-    modifyPersonnel(params).then(res => {
-      this.setState({
-        confirmLoading: false
+    modifyPersonnel(params)
+      .then(res => {
+        this.setState({
+          confirmLoading: false
+        });
+        this.props.onOk();
+      })
+      .catch(() => {
+        this.setState({
+          confirmLoading: false
+        });
       });
-      this.props.onOk();
-    })
   };
   render() {
     const { onClose } = this.props;

@@ -41,6 +41,7 @@ export default class Management extends PureComponent {
         });
       });
   };
+  
 
   deletePersonnel = async id => {
     const params = {
@@ -50,11 +51,12 @@ export default class Management extends PureComponent {
     await this.fetchPersonnelList();
   };
 
-  onOk = () => {
+  onModifyOk = () => {
     this.onClose();
+    this.fetchPersonnelList();
   };
 
-  onOpen = record => {
+  onOpenModify = record => {
     this.setState({
       visible: true,
       selectId: record.id
@@ -78,13 +80,13 @@ export default class Management extends PureComponent {
         <ContainerSpin loading={loading}>
           <PersonnelTable
             dataSource={dataSource}
-            onOpen={this.onOpen}
+            onOpen={this.onOpenModify}
             onDelete={this.onDelete}
           />
           {visible && (
             <ModifyModal
               onClose={this.onClose}
-              onOk={this.onOk}
+              onOk={this.onModifyOk}
               selectId={selectId}
             />
           )}
