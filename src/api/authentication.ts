@@ -1,6 +1,6 @@
 import { postByJson } from "../utils/request";
 
-const ROOT = "http://rap2api.taobao.org/app/mock/123391/authentication"; //本页面通用
+const ROOT = "/authentication"; //本页面通用
 
 function _api(name: string) {
   return ROOT + "/" + name;

@@ -81,22 +81,19 @@ export async function put(url, params, options?) {
   if(!options) {
     options = {}
   }
-  if (!url.indexOf('?') && params) {
-    url = url + '?' + queryString.stringify(params);
-  } else {
-    options.params = params
+  if (!options.params && params) {
+    if (!options.headers) {
+      options.headers = {};
+    }
+    options.headers[ 'Content-Type' ] = 'application/json; charset=utf-8';
+    options.data = JSON.stringify(params, clearNull);
   }
   return await request(url, { ...options, method: 'PUT' });
 }
 
-export async function Delete(url, params, options?) {
+export async function Delete(url, options?) {
   if(!options) {
     options = {}
-  }
-  if (!url.indexOf('?') && params) {
-    url = url + '?' + queryString.stringify(params);
-  } else {
-    options.params = params
   }
   return await request(url, { ...options, method: 'DELETE' });
 }

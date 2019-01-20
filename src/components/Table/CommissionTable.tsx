@@ -3,14 +3,13 @@ import { Table } from "antd";
 
 type PersonnelData = {
   key?: number;
-  name: string;
+  personnelName: string;
   position: string;
-  type: string;
-  orderNumber: string;
-  orderName: string;
-  time: string;
-  amount: string;
-  total: string;
+  commissionType: string;
+  transSerno: string;
+  name: string;
+  createDate: string;
+  cnAmt: string;
 };
 
 interface Props {
@@ -31,8 +30,8 @@ export default class CommissionTable extends PureComponent<Props> {
     return [
       {
         title: "姓名",
-        dataIndex: "name",
-        key: "name"
+        dataIndex: "personnelName",
+        key: "personnelName"
       },
       {
         title: "职位",
@@ -41,33 +40,28 @@ export default class CommissionTable extends PureComponent<Props> {
       },
       {
         title: "提成类型",
-        dataIndex: "type",
-        key: "type"
+        dataIndex: "commissionType",
+        key: "commissionType"
       },
       {
         title: "单号",
-        key: "orderNumber",
-        dataIndex: "orderNumber"
+        key: "transSerno",
+        dataIndex: "transSerno"
       },
       {
         title: "名称",
-        key: "orderName",
-        dataIndex: "orderName"
+        key: "name",
+        dataIndex: "name"
       },
       {
         title: "时间",
-        key: "time",
-        dataIndex: "time"
+        key: "createDate",
+        dataIndex: "createDate"
       },
       {
         title: "提成金额",
-        key: "amount",
-        dataIndex: "amount"
-      },
-      {
-        title: "总提成",
-        key: "total",
-        dataIndex: "total"
+        key: "cnAmt",
+        dataIndex: "cnAmt"
       },
       {
         title: "Action",

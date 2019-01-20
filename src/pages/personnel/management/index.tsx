@@ -20,8 +20,6 @@ export default class Management extends PureComponent {
 
   fetchPersonnelList = () => {
     const params = {
-      nameOrJobNumber: "",
-      position: "",
       page: 1,
       size: 10
     };
@@ -32,7 +30,7 @@ export default class Management extends PureComponent {
       .then(res => {
         this.setState({
           loading: false,
-          dataSource: mapPersonnelData(res.data)
+          dataSource: mapPersonnelData(res.records)
         });
       })
       .catch(err => {
@@ -44,10 +42,7 @@ export default class Management extends PureComponent {
   
 
   deletePersonnel = async id => {
-    const params = {
-      id
-    };
-    await deletePersonnel(params);
+    await deletePersonnel(id);
     await this.fetchPersonnelList();
   };
 
