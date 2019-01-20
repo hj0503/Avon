@@ -6,6 +6,7 @@ import { personnel, deletePersonnel } from "src/api/personnel";
 import ContainerSpin from "src/components/Spin/ContainerSpin";
 import ModifyModal from "./components/ModifyModal";
 import { mapPersonnelData } from "./services";
+import AddPersonnel from './components/AddPersonnel';
 
 export default class Management extends PureComponent {
   readonly state = {
@@ -72,6 +73,7 @@ export default class Management extends PureComponent {
     const { loading, dataSource, visible, selectId } = this.state;
     return (
       <MainLayout>
+        <AddPersonnel />
         <ContainerSpin loading={loading}>
           <PersonnelTable
             dataSource={dataSource}

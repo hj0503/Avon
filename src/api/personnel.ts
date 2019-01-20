@@ -1,4 +1,4 @@
-import { get, put, Delete } from "../utils/request";
+import { get, put, Delete, postByJson } from "../utils/request";
 
 /**
  * 员工列表
@@ -22,6 +22,14 @@ type ModifyPersonnel = {
 type DeletePersonnel = {
   id: string;
 };
+
+export async function addPersonnel<T>(params: Personnel): Promise<any> {
+  const resp = await postByJson("/personnel", params);
+  const {
+    body: { data }
+  } = resp;
+  return data;
+}
 
 export async function personnel<T>(params: Personnel): Promise<any> {
   const resp = await get("/personnel", params);

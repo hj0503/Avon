@@ -1,65 +1,77 @@
 import React, { PureComponent, createRef } from "react";
 import SubmitModal from "src/components/Modal/SubmitModal";
-import ModifyForm from "./ModifyForm";
-import { modifyPersonnel } from "src/api/personnel";
+import { Button } from "antd";
+import AddForm from "./AddForm";
+import { addPersonnel } from "src/api/personnel";
 
-interface Props {
-  onClose: () => void;
-  onOk: () => void;
-  selectId: string;
-}
-
-export default class ModifyModal extends PureComponent<Props> {
+export default class AddPersonnel extends PureComponent {
   readonly state = {
-    confirmLoading: false
+    confirmLoading: false,
+    visible: false
   };
   private modalForm = createRef<any>();
   onOk = () => {
-    const { selectId } = this.props;
     this.modalForm.current.validateFields((err, values) => {
       if (!err) {
-        const { name, phone, position, status, basicWage } = values;
+        const { name, jobNumber, phone, position, status, basicWage } = values;
         const params = {
-          id: selectId,
           name,
+          jobNumber,
           phone,
           position,
           status,
           basicWage
         };
-        this.onModifyPersonnel(params);
+        this.onAddPersonnel(params);
       }
     });
   };
-  onModifyPersonnel = params => {
+  onAddPersonnel = params => {
     this.setState({
       confirmLoading: true
     });
-    modifyPersonnel(params)
+    addPersonnel(params)
       .then(res => {
         this.setState({
-          confirmLoading: false
+          confirmLoading: false,
+          visible: false
         });
-        this.props.onOk();
       })
       .catch(() => {
         this.setState({
-          confirmLoading: false
+          confirmLoading: false,
+          visible: false
         });
       });
   };
+  onOpen = () => {
+    this.setState({
+      visible: true
+    });
+  };
+  onClose = () => {
+    this.setState({
+      visible: false
+    });
+  };
   render() {
-    const { onClose } = this.props;
-    const { confirmLoading } = this.state;
+    const { confirmLoading, visible } = this.state;
     return (
-      <SubmitModal
-        title="修改员工信息"
-        onClose={onClose}
-        onOk={this.onOk}
-        confirmLoading={confirmLoading}
-      >
-        <ModifyForm ref={this.modalForm} />
-      </SubmitModal>
+      <div>
+        <Button type="primary" onClick={this.onOpen}>
+          添加
+        </Button>
+        {visible && (
+          <SubmitModal
+            title="添加员工信息"
+            onClose={this.onClose}
+            onOk={this.onOk}
+            confirmLoading={confirmLoading}
+          >
+            <AddForm ref={this.modalForm} />
+          </SubmitModal>
+        )}
+      </div>
     );
   }
 }
