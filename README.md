@@ -9,3 +9,4 @@ Avon
   * lodash
   * axios
   * bizcharts
+  * date-fns
