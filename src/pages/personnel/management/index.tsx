@@ -6,7 +6,11 @@ import { personnel, deletePersonnel } from "src/api/personnel";
 import ContainerSpin from "src/components/Spin/ContainerSpin";
 import ModifyModal from "./components/ModifyModal";
 import { mapPersonnelData } from "./services";
-import AddPersonnel from './components/AddPersonnel';
+import AddPersonnel from "./components/AddPersonnel";
+import Search from "antd/lib/input/Search";
+import { Select } from 'antd';
+
+const Option = Select.Option
 
 export default class Management extends PureComponent {
   readonly state = {
@@ -19,10 +23,12 @@ export default class Management extends PureComponent {
     this.fetchPersonnelList();
   }
 
-  fetchPersonnelList = () => {
+  fetchPersonnelList = (nameOrJobNumber = "", position = "") => {
     const params = {
       page: 1,
-      size: 10
+      size: 10,
+      nameOrJobNumber,
+      position
     };
     this.setState({
       loading: true
@@ -40,7 +46,6 @@ export default class Management extends PureComponent {
         });
       });
   };
-  
 
   deletePersonnel = async id => {
     await deletePersonnel(id);
@@ -69,11 +74,29 @@ export default class Management extends PureComponent {
     showDeleteConfirm(() => this.deletePersonnel(record.id));
   };
 
+  onSearch = value => {
+    this.fetchPersonnelList(value);
+  };
+
+  onSelectPosition = value => {
+    this.fetchPersonnelList("", value)
+  }
+
   render() {
     const { loading, dataSource, visible, selectId } = this.state;
     return (
       <MainLayout>
         <AddPersonnel />
+        <Search
+          placeholder="通过姓名或者工号搜索"
+          onSearch={value => this.fetchPersonnelList(value)}
+          style={{ width: 200 }}
+        />
+        <Select placeholder="通过职位搜索" onSelect={(value) => this.onSelectPosition(value)} style={{ width: 120 }}>
+          <Option value="扫厕所">扫厕所</Option>
+          <Option value="1">1</Option>
+          <Option value="1002">1002</Option>
+        </Select>
         <ContainerSpin loading={loading}>
           <PersonnelTable
             dataSource={dataSource}
