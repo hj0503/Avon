@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import MainLayout from "src/layouts/MainLayout";
-import CommissionTable from "src/components/Table/CommissionTable";
+import CommissionTable from "src/components/PersonnelTable/CommissionTable";
 import { showDeleteConfirm } from "src/components/Modal/Confirm";
 import { commisionList } from "src/api/personnel";
 import ContainerSpin from "src/components/Spin/ContainerSpin";

@@ -1,5 +1,7 @@
 import { get, put, Delete, postByJson } from "../utils/request";
 
+const commonApi = '/avon'
+
 /**
  * 员工列表
  */
@@ -24,7 +26,7 @@ type DeletePersonnel = {
 };
 
 export async function addPersonnel<T>(params: Personnel): Promise<any> {
-  const resp = await postByJson("/personnel", params);
+  const resp = await postByJson(`${commonApi}/personnel`, params);
   const {
     body: { data }
   } = resp;
@@ -32,7 +34,7 @@ export async function addPersonnel<T>(params: Personnel): Promise<any> {
 }
 
 export async function personnel<T>(params: Personnel): Promise<any> {
-  const resp = await get("/personnel", params);
+  const resp = await get(`${commonApi}/personnel`, params);
   const {
     body: { data }
   } = resp;
@@ -42,7 +44,7 @@ export async function personnel<T>(params: Personnel): Promise<any> {
 export async function modifyPersonnel<T>(
   params: ModifyPersonnel
 ): Promise<any> {
-  const resp = await put("/personnel", params);
+  const resp = await put(`${commonApi}/personnel`, params);
   const { body } = resp;
   return body;
 }
@@ -50,7 +52,7 @@ export async function modifyPersonnel<T>(
 export async function deletePersonnel<T>(
   params: DeletePersonnel
 ): Promise<any> {
-  const resp = await Delete(`/personnel/${params}`);
+  const resp = await Delete(`${commonApi}/personnel/${params}`);
   const { body } = resp;
   return body;
 }
@@ -67,14 +69,14 @@ type Commision = {
   endDate?: string;
 };
 export async function commisionList<T>(params: Commision): Promise<any> {
-  const resp = await get("/trans/commission/list", params);
+  const resp = await get(`${commonApi}/trans/commission/list`, params);
   const {
     body: { data }
   } = resp;
   return data;
 }
 export async function commisionCnat<T>(params: Commision): Promise<any> {
-  const resp = await get("/trans/commission/cnamt", params);
+  const resp = await get(`${commonApi}/trans/commission/cnamt`, params);
   const {
     body: { data }
   } = resp;
@@ -89,14 +91,14 @@ type Performance = {
   size: number;
 };
 export async function performanceList<T>(params: Performance): Promise<any> {
-  const resp = await get("/trans/performance/list", params);
+  const resp = await get(`${commonApi}/trans/performance/list`, params);
   const {
     body: { data }
   } = resp;
   return data;
 }
 export async function performanceCnAmt<T>(params: Performance): Promise<any> {
-  const resp = await get("/trans/performance/amt", params);
+  const resp = await get(`${commonApi}/trans/performance/amt`, params);
   const {
     body: { data }
   } = resp;

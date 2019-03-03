@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import MainLayout from "src/layouts/MainLayout";
-import PerfomanceTable from "src/components/Table/PerformanceTable";
+import PerfomanceTable from "src/components/PersonnelTable/PerformanceTable";
 import { showDeleteConfirm } from "src/components/Modal/Confirm";
 import { performanceList } from "src/api/personnel";
 import ContainerSpin from "src/components/Spin/ContainerSpin";

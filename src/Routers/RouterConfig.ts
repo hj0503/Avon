@@ -2,9 +2,13 @@ import Login from "../pages/login/index";
 import Index from "../pages/index/index"
 import UserList from "../pages/userList/index"
 import Test from '../pages/test/index'
+
 import Commision from "../pages/personnel/commision"
 import Management from "../pages/personnel/management"
 import Results from "../pages/personnel/performance"
+
+import CardList from "../pages/card/list"
+import CardSold from "../pages/card/sold"
 
 const routeConfig = [
   {
@@ -38,6 +42,14 @@ const routeConfig = [
   {
     path: "/personnel/results",
     component: Results
+  },
+  {
+    path: "/card/list",
+    component: CardList
+  },
+  {
+    path: "/card/sold",
+    component: CardSold
   }
 ];
 

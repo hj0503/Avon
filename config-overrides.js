@@ -32,26 +32,14 @@ module.exports = {
   devServer: (configFunction) => {
     return function(proxy, allowedHost) {
       proxy = {
+        "/avon": {
+          target: "http://holer65255.wdom.net",
+          changeOrigin: true
+        },
         "/authentication": {
           target: "http://holer65255.wdom.net",
           changeOrigin: true
         },
-        "/personnel": {
-          target: "http://holer65255.wdom.net",
-          changeOrigin: true
-        },
-        "/trans/commission": {
-          target: "http://holer65255.wdom.net",
-          changeOrigin: true
-        },
-        "/trans/performance": {
-          target: "http://holer65255.wdom.net",
-          changeOrigin: true
-        },
-        "/sysmenu": {
-          target: "http://holer65255.wdom.net",
-          changeOrigin: true
-        }
       }
       const config = configFunction(proxy, allowedHost);
       return config;

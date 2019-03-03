@@ -38,7 +38,7 @@ export const MENU_LIST: Array<Menu_list> = [
     icon: "upload",
     label: "员工管理",
     key: "personnel",
-    path: '/staff',
+    path: '/personnel',
     subMenu: [
       {
         icon: "upload",
@@ -62,21 +62,21 @@ export const MENU_LIST: Array<Menu_list> = [
   },
   {
     icon: "user",
-    label: "test4C",
-    key: "menu_5",
-    path: '/index',
+    label: "卡项管理",
+    key: "card",
+    path: '/card',
     subMenu: [
       {
         icon: "upload",
-        label: "test3",
-        key: "menu_6",
-        path: '/inde',
+        label: "卡项列表",
+        key: "CardList",
+        path: '/card/list',
       },
       {
         icon: "user",
-        label: "test4",
-        key: "menu_7",
-        path: '/ind'
+        label: "已售卡项",
+        key: "CardSold",
+        path: '/card/sold'
       }
     ]
   },
