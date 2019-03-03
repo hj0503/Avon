@@ -65,7 +65,7 @@ export default async function request<T>(url, options?): Promise<RequestResponse
   };
 }
 
-export async function get(url, params, options?) {
+export async function get<T>(url, params?, options?) {
   if(!options) {
     options = {}
   }

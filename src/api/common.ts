@@ -1,7 +1,7 @@
-import { postByJson } from "../utils/request";
+import { get } from "../utils/request";
 
-export async function sysMenu(params) {
-  const resp = await postByJson<any>("http://rap2api.taobao.org/app/mock/123391/sysMenu", params);
+export async function sysMenu() {
+  const resp = await get<any>("/sysmenu");
   const { body: {data} } = resp
   return data
 }

@@ -6,33 +6,41 @@ const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
 import { MENU_LIST } from "../data/menu";
+import { connect } from "react-redux";
+import { fetchSysMenu } from 'src/reducers/authReducer';
 
 interface Props {
-  collapsed: boolean,
+  collapsed: boolean;
   defaultSelectedKeys: string;
   defaultOpenKeys: string;
+  getMenu: () => void;
 }
 interface State {
-  openKeys: string[]
+  openKeys: string[];
 }
 
-export default class SiderLayout extends PureComponent<Props, State> {
-  private rootSubmenuKeys = MENU_LIST.map(menu => menu.key)
+class SiderLayout extends PureComponent<Props, State> {
+  private rootSubmenuKeys = MENU_LIST.map(menu => menu.key);
   readonly state = {
-    openKeys: ['']
-  }
-  onOpenChange = (openKeys) => {
-    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1);
+    openKeys: [""]
+  };
+  onOpenChange = openKeys => {
+    const latestOpenKey = openKeys.find(
+      key => this.state.openKeys.indexOf(key) === -1
+    );
     if (this.rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
       this.setState({ openKeys });
     } else {
       this.setState({
-        openKeys: latestOpenKey ? [latestOpenKey] : [],
+        openKeys: latestOpenKey ? [latestOpenKey] : []
       });
     }
+  };
+  componentDidMount() {
+    this.props.getMenu()
   }
   render() {
-    const { collapsed, defaultSelectedKeys, defaultOpenKeys } = this.props
+    const { collapsed, defaultSelectedKeys, defaultOpenKeys } = this.props;
     return (
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo" />
@@ -97,3 +105,16 @@ export default class SiderLayout extends PureComponent<Props, State> {
     );
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getMenu() {
+      dispatch(fetchSysMenu());
+    }
+  };
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SiderLayout);

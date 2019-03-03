@@ -1,15 +1,11 @@
-import { EMPTY_USER_INFO } from "./../actions/types";
+import { EMPTY_USER_INFO, GET_MENU } from "./../actions/types";
 import { UPDATE_USER_INFO } from "../actions/types";
 import { login, logout } from "src/api/authentication";
-
-export type UserInfo = {
-  userName: string;
-};
+import { sysMenu } from "src/api/common";
+import { getMenu } from "src/actions/authActions";
 
 export type State = {
-  userInfo: UserInfo;
-  isAuthenticated: boolean;
-  user: number;
+  menu: any[];
 };
 
 export type Store = {
@@ -17,9 +13,7 @@ export type Store = {
 };
 
 const initialState = {
-  isAuthenticated: false,
-  user: 1,
-  userInfo: {}
+  menu: []
 } as State;
 
 export default function(state = initialState, action: any) {
@@ -33,6 +27,11 @@ export default function(state = initialState, action: any) {
       return {
         ...state,
         userInfo: action.payload
+      };
+    case GET_MENU:
+      return {
+        ...state,
+        menu: action.payload
       };
     default:
       return state;
@@ -51,11 +50,15 @@ export function fetchUserInfo(params) {
 export function logoutUser() {
   return dispatch => {
     return logout().then(() => {
-      localStorage.removeItem("userName")
+      localStorage.removeItem("userName");
     });
   };
 }
 
 export function fetchSysMenu() {
-  
+  return dispatch => {
+    return sysMenu().then(res => {
+      dispatch(getMenu);
+    });
+  };
 }

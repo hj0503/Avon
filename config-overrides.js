@@ -47,6 +47,10 @@ module.exports = {
         "/trans/performance": {
           target: "http://holer65255.wdom.net",
           changeOrigin: true
+        },
+        "/sysmenu": {
+          target: "http://holer65255.wdom.net",
+          changeOrigin: true
         }
       }
       const config = configFunction(proxy, allowedHost);
