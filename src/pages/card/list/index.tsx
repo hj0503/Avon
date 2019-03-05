@@ -19,7 +19,7 @@ export default class List extends PureComponent {
     this.fetchCardList();
   }
   fetchCardList = (cardNumberOrName = "") => {
-    const params = {
+    const params = { 
       page: 1,
       size: 10,
       cardNumberOrName,
@@ -40,7 +40,7 @@ export default class List extends PureComponent {
         });
       });
   };
-  deletePersonnel = async id => {
+  deletePersonnel = async id => { 
     await deleteCard(id);
     await this.fetchCardList();
   };
