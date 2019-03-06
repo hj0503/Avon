@@ -18,7 +18,7 @@ export default class List extends PureComponent {
   componentDidMount() {
     this.fetchCardList();
   }
-  fetchCardList = (cardNumberOrName = "") => {
+  fetchCardList = (cardNumberOrName = "") => { 
     const params = { 
       page: 1,
       size: 10,
