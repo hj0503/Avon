@@ -26,7 +26,7 @@ export default class Management extends PureComponent {
   fetchPersonnelList = (nameOrJobNumber = "", position = "") => {
     const params = {
       page: 1,
-      size: 10,
+      size: 10, 
       nameOrJobNumber,
       position
     };
