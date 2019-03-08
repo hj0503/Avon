@@ -62,7 +62,7 @@ class ModifyCardForm extends PureComponent<Props> {
         </FormItem>
       </Form>
     );
-  }
+  } 
 }
 
 export default Form.create({})(ModifyCardForm);
