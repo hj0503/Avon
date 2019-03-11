@@ -8,7 +8,7 @@ interface Props {
   form: WrappedFormUtils;
 }
 
-class ModifyCardForm extends PureComponent<Props> {
+class ModifyCardForm extends PureComponent<Props> { 
   render() {
     const formItemLayout = {
       labelCol: {
