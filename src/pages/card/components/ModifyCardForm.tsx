@@ -14,7 +14,7 @@ class ModifyCardForm extends PureComponent<Props> {
       labelCol: {
         xs: { span: 28 },
         sm: { span: 4 }
-      },
+      }, 
       wrapperCol: {
         xs: { span: 24 },
         sm: { span: 20 }
