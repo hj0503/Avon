@@ -4,6 +4,8 @@ import { WrappedFormUtils } from "antd/lib/form/Form";
 
 const FormItem = Form.Item;
 
+//需要封装table组件
+
 interface Props {
   form: WrappedFormUtils;
 }
